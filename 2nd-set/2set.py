@@ -80,11 +80,41 @@ def seventeen(extracted):
             print(match.group())
 
 def eighteen(extracted):
-    pass
+    p = re.compile("([一-龠]+仙台[一-龠]+)")
+    for i, line in enumerate(extracted):
+        if i > 100:
+            sys.exit()
+        j = json.loads(line.decode("utf-8"))
+        match = p.search(j["text"])
+        if match:
+            print(match.group())
+
+def nineteen(extracted):
+    p = re.compile("〒([0-9０-９]{3}[-|ー][0-9０-９]{4})(東京都)([一-龠]+)")
+    for i, line in enumerate(extracted):
+        if i > 100:
+            sys.exit()
+        j = json.loads(line.decode("utf-8"))
+        match = p.search(j["text"])
+        if match:
+            print(match.group())
+
+def twenty(extracted):
+    p = re.compile('([\\uE000-\\uF8FF]+)')
+    for i, line in enumerate(extracted):
+        """
+        if i > 100000:
+            sys.exit()
+        """
+        j = json.loads(line.decode("utf-8"))
+        match = p.search(j["text"])
+        if match:
+            print(match.group())
+
 
 if __name__ == "__main__":
-    with tarfile.open("./test.tar.gz") as f:
-        extracted = f.extractfile("test.txt")
+    with tarfile.open("./tweets.tar.gz") as f:
+        extracted = f.extractfile("tweets.txt")
         #experiment(extracted)
         #eleven(extracted)
         #twelve(extracted)
@@ -93,4 +123,6 @@ if __name__ == "__main__":
         #fifteen(extracted)
         #sixteen(extracted)
         #seventeen(extracted)
-        eighteen(extracted)
+        #eighteen(extracted)
+        #nineteen(extracted)
+        twenty(extracted)
