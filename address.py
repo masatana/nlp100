@@ -4,7 +4,7 @@ import sys
 import csv
 
 D = set()
-for row in csv.reader(sys.stdin):
+for i, row in enumerate(csv.reader(sys.stdin)):
     s1 = ''.join((row[6], row[7]))
     s2 = row[8]
     if s2 == '以下に掲載がない場合':
