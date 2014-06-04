@@ -4,4 +4,10 @@
 *.dic
 /bin
 /lib
+*.tok
+*.stem
+*.xml
+*.pickle
 *.tar.gz
+/4th-set/leveldb
+*.table
